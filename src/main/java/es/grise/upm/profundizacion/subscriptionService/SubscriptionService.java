@@ -1,6 +1,7 @@
 package es.grise.upm.profundizacion.subscriptionService;
 
 import java.util.Collection;
+import java.util.ArrayList;
 
 public class SubscriptionService {
 
@@ -9,8 +10,8 @@ public class SubscriptionService {
 	/*
 	 * Constructor
 	 */
-	public SubscriptionService(Delivery delivery) {
-		
+	public SubscriptionService() {
+		subscribers = new ArrayList<User>();
 	}
 
 	/*
@@ -20,11 +21,11 @@ public class SubscriptionService {
 		if (user == null) {
 			throw new NullUserException();
 		}
-		if (!subscribers.contains(user)) {
-			throw new ExistingUserException();
-		}
 		if (user.getDelivery() == Delivery.LOCAL && user.getEmail() != null) {
 			throw new LocalUserDoesNotHaveNullEmailException();
+		}
+		if (subscribers != null && subscribers.contains(user)) {
+			throw new ExistingUserException();
 		}
 		subscribers.add(user);
 	}
@@ -36,6 +37,15 @@ public class SubscriptionService {
 		
 		return subscribers;
 		
+	}
+	public class NullUserException extends IllegalArgumentException {
+		
+	}
+	public class ExistingUserException extends IllegalArgumentException {
+
+	}
+	public class LocalUserDoesNotHaveNullEmailException extends IllegalArgumentException {
+
 	}
 
 }
