@@ -17,7 +17,16 @@ public class SubscriptionService {
 	 * Method to code
 	 */
 	public void addSubscriber(User user) {
-		
+		if (user == null) {
+			throw new NullUserException();
+		}
+		if (!subscribers.contains(user)) {
+			throw new ExistingUserException();
+		}
+		if (user.getDelivery() == Delivery.LOCAL && user.getEmail() != null) {
+			throw new LocalUserDoesNotHaveNullEmailException();
+		}
+		subscribers.add(user);
 	}
 	
 	/*
