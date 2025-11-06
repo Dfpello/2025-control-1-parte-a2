@@ -7,7 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>Subscription Service</name>
+	<name>Cruise Control</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,6 +86,6 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	<artifactId>subscriptionService</artifactId>
-	<description>For sending messages to clients</description>
+	<artifactId>cruiseControl</artifactId>
+	<description>For controlling speed</description>
 </project>
